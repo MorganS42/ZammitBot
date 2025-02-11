@@ -1,6 +1,6 @@
 modules:
   rovo:agent:
-    - key: arthur-hello-world-agent
+    - key: zammit-agent
       name: Sean Zammit
       description: An agent for testing Forge agent functionality
       prompt: >
