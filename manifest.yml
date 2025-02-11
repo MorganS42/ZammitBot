@@ -27,7 +27,7 @@ modules:
           type: string
           required: true
           description: |
-            "The Id of the blog with the specified label "
+            "The Id of the blog with the specified label"
     - key: message-generator
       name: Generate a message
       function: sendMessage
