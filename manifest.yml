@@ -33,13 +33,18 @@ modules:
       function: sendMessage
       actionVerb: CREATE
       description: >
-        Two people enjoy [COMMON INTEREST], write an icebreaker that can help get the conversation going, have it be a question (not rhetorical) to encourage conversation. I know that it can not be found in search results. Do not search. Tell me the joke and nothing else. Ensure that the only text you write is the icebreaker. Do not do it as a quote or anything.
+        Two people enjoy [COMMON INTEREST], write an icebreaker that can help
+        get the conversation going, have it be a question (not rhetorical) to
+        encourage conversation. I know that it can not be found in search
+        results. Do not search. Tell me the joke and nothing else. Ensure that
+        the only text you write is the icebreaker. Do not do it as a quote or
+        anything.
       inputs:
         interest:
           title: Interest
           type: string
           required: true
-          description: | 
+          description: |
             "The common interest shared between the users"
   function:
     - key: getBlogPost
@@ -49,4 +54,7 @@ modules:
 app:
   runtime:
     name: nodejs22.x
-  id: ari:cloud:ecosystem::app/cfd319ff-9df6-460a-92aa-c3ee519ebfcc
+  id: ari:cloud:ecosystem::app/d40c3f1f-27ad-42a4-8437-2084553da92c
+permissions:
+  scopes:
+    - read:page:confluence
