@@ -81,5 +81,5 @@ async function matchmake(message, userA, userB) {
 }
 
 export function sendMessage(payload) {
-
+  matchmake(payload.Message, payload.NameOne, payload.NameTwo)
 }
