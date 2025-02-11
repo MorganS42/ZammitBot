@@ -22,14 +22,7 @@ modules:
       name: Get blog posts
       function: getBlogPosts
       actionVerb: GET
-      description: Fetch all confluence blog posts with given id
-      inputs:
-        id:
-          title: Id
-          type: string
-          required: true
-          description: |
-            "The Id of the blog with the specified label "
+      description: Fetch all confluence blog posts
     - key: send-message
       name: Send a message over Slack
       function: sendMessage

@@ -1,7 +1,7 @@
 import api, { route } from "@forge/api";
 
 export async function getBlogPosts(payload) {
-  const response = await api.asUser().requestConfluence(route`/wiki/api/v2/labels/${payload.id}/blogposts`, {
+  const response = await api.asUser().requestConfluence(route`/wiki/api/v2/blogposts`, {
     headers: {
       'Accept': 'application/json'
     }
