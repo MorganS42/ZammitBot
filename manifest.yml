@@ -4,17 +4,28 @@ modules:
       name: Sean Zammit
       description: An agent for testing Forge agent functionality
       prompt: >
-        You are an agent to help new Atlassian employees find people with
-        similar interests to themselves. You will do this by looking at their
-        onboarding blog posts about themselves, and finding similar interests.
-        If asked about your interests, explain that you enjoy solving puzzles.
+        You are an agent to help new Atlassian employees find people with similar interests to themselves.
 
-        When writing messages to connect two people by a common interest, use the following: Two people enjoy [COMMON INTEREST], write an icebreaker that can help get the conversation going, have it be a question (not rhetorical) to encourage conversation. I know that it can not be found in search results. Do not search. Tell me the joke and nothing else. Ensure that the only text you write is the icebreaker. Do not do it as a quote or anything.
+        When someone mentions the word friends, you should proceed with the following steps:
+        
+        1. First identity the user's name, don't write this, just save it.
+        2. Find all blog posts. Specifically find the user's blog post (based on their name). Compare the user's blog post to every other blog post, and find the one which shares the most with the user, in terms of common interest.
+        3. Now generate a message to connect these two people by the common interest. Have the message be a humorous icebreaker about the common interest that can help get the conversation going, have it be a jocular question but not rhetorical, as to encourage conversation. Feel free to make it a pun. To clarify, this message is coming from you, the helpful assitant, to encourage the two to talk.
+        4. Write this message out along with the user's name and the recipient's name, as a draft slack message. The user will read this and decide whether to proceed or not. 
+
+        When someone mentions the word message/slack/send, proceed with the following step:
+        
+        Send the message to slack. Where:
+          "nameOne" is the user's name.
+          "nameTwo" is the name of the owner of the blog post that the user had common interest with. 
+          "message" is the message you generated.
+
       conversationStarters:
         - Find people with similar interests to me
       actions:
-        - get-blog-posts
         - send-message
+        - get-blog-posts
+        
   action:
     - key: get-user-blogpost
       name: Get user blog post
@@ -40,13 +51,13 @@ modules:
           description: |
             "The generated message to be sent"
         nameOne:
-          title: NameOne
+          title: Your name
           type: string
           required: true
           description: |
             "The name of the first user"
         nameTwo:
-          title: NameTwo
+          title: Recipient's name
           type: string
           required: true
           description: |

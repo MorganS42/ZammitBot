@@ -2,19 +2,22 @@ import api, { route } from "@forge/api";
 
 const { WebClient } = require('@slack/web-api');
 
-const slackToken = "xoxb-8428428571013-8431737529858-SYTpkn39ANECl9dqiq7k05aq";
+const slackToken = "SECRET";
 const client = new WebClient(slackToken);
 
 export async function getUserBlogPost(payload) {
-  const responses = await api.asUser().requestConfluence(route`/wiki/api/v2/blogposts`, {
+  const response = await api.asUser().requestConfluence(route`/wiki/rest/api/content?type=blogpost&expand=body.view`, {
     headers: {
       'Accept': 'application/json'
     }
   });
 
-  for(result of responses.results) {
-    if(result.title.contains("Introdution")) {
-      return result; 
+  const data = await response.json();
+
+  for(const result of data.results) {
+    if(result.title.includes("Introduction")) {
+      console.log("Found: " + result)
+      return result;
     }
   }
 }
@@ -41,7 +44,7 @@ async function getId(name) {
 
       for (let user of users) {
           console.log(user.real_name);
-          if (user.real_name === name) {
+          if (user.real_name.split(" ")[0].toLowerCase() === name.split(" ")[0].toLowerCase()) {
               return user.id;
           }
       }
@@ -71,7 +74,7 @@ async function getUniqueChannelName(baseName) {
 async function matchmake(message, userA, userB) {
   try {
       const baseName = `${userA.toLowerCase().split(" ")[0]}-${userB.toLowerCase().split(" ")[0]}`;
-      const name = baseName + await getUniqueChannelName(baseName);
+      const name = baseName + `-${Math.floor(Math.random() * 10000)}`//await getUniqueChannelName(baseName);
       console.log(name);
 
       const conversation = await client.conversations.create({ name: name, is_private: true });
@@ -81,6 +84,8 @@ async function matchmake(message, userA, userB) {
 
       const idA = await getId(userA);
       const idB = await getId(userB);
+
+      console.error(idA + " " + idB)
 
       if (!idA || !idB) {
           console.error("One or both users not found.");
