@@ -16,6 +16,11 @@ modules:
         - get-blog-posts
         - send-message
   action:
+    - key: get-user-blogpost
+      name: Get user blog post
+      function: getUserBlogPost
+      actionVerb: GET
+      description: Fetches introduction blog post of current user
     - key: get-blog-posts
       name: Get blog posts
       function: getBlogPosts
@@ -51,6 +56,8 @@ modules:
       handler: index.getBlogPosts
     - key: sendMessage
       handler: index.sendMessage
+    - key: getUserBlogPost
+      handler: index.getUserBlogPost
 app:
   runtime:
     name: nodejs22.x

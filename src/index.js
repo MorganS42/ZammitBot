@@ -5,6 +5,20 @@ const { WebClient } = require('@slack/web-api');
 const slackToken = "xoxb-8428428571013-8431737529858-SYTpkn39ANECl9dqiq7k05aq";
 const client = new WebClient(slackToken);
 
+export async function getUserBlogPost(payload) {
+  const responses = await api.asUser().requestConfluence(route`/wiki/api/v2/blogposts`, {
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
+
+  for(result of responses.results) {
+    if(result.title.contains("Introdution")) {
+      return result; 
+    }
+  }
+}
+
 export async function getBlogPosts(payload) {
   const response = await api.asUser().requestConfluence(route`/wiki/rest/api/content?type=blogpost&expand=body.view`, {
     headers: {
