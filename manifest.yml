@@ -14,31 +14,26 @@ modules:
         - Find people with similar interests to me
       actions:
         - get-blog-post
+        - send-message
   action:
     - key: get-blog-posts
       name: Get blog posts
       function: getBlogPosts
       actionVerb: GET
-      description: >
-        Fetch all blog posts with given id
+      description: Fetch all confluence blog posts with given id
       inputs:
         id:
           title: Id
           type: string
           required: true
           description: |
-            "The Id of the blog with the specified label"
-    - key: message-generator
-      name: Generate a message
+            "The Id of the blog with the specified label "
+    - key: send-message
+      name: Send a message over Slack
       function: sendMessage
       actionVerb: CREATE
-      description: >
-        Two people enjoy [COMMON INTEREST], write an icebreaker that can help
-        get the conversation going, have it be a question (not rhetorical) to
-        encourage conversation. I know that it can not be found in search
-        results. Do not search. Tell me the joke and nothing else. Ensure that
-        the only text you write is the icebreaker. Do not do it as a quote or
-        anything.
+      description: Send a message to a specified user via Slack. It will create a DM
+        with the user.
       inputs:
         interest:
           title: Interest
