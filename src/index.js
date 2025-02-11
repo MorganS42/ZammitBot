@@ -5,3 +5,8 @@ export function messageLogger(payload) {
   console.log(message);
   return message;
 }
+
+export function sendMessage(payload) {
+  // TODO Pass to slack
+  return payload.message;
+}
