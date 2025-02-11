@@ -28,7 +28,6 @@ modules:
           required: true
           description: |
             "The Id of the blog with the specified label "
-  action:
     - key: message-generator
       name: Generate a message
       function: sendMessage
@@ -45,7 +44,6 @@ modules:
   function:
     - key: getBlogPost
       handler: index.getBlogPost
-  function:
     - key: sendMessage
       handler: index.sendMessage
 app:
