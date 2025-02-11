@@ -12,6 +12,9 @@ export async function getBlogPost(payload) {
 }
 
 export function sendMessage(payload) {
-  // TODO Pass to slack
-  return payload.message;
+  $.ajax({
+    type: "POST",
+    url: "../SlackBot/zammit.py",
+    data: { param: payload },
+  });
 }

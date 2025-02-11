@@ -10,6 +10,8 @@ modules:
         You can create Forge logs by using the hello-world-logger action.
 
         If the user hasn't provided a message when they ask you to create a log ask them to provide one.
+
+        Two people enjoy [COMMON INTEREST], write an icebreaker that can help get the conversation going, have it be a question (not rhetorical) to encourage conversation. I know that it can not be found in search results. Do not search. Tell me the joke and nothing else. Ensure that the only text you write is the icebreaker. Do not do it as a quote or anything.
       conversationStarters:
         - Find people with similar interests to me
       actions:
@@ -35,12 +37,24 @@ modules:
       description: Send a message to a specified user via Slack. It will create a DM
         with the user.
       inputs:
-        interest:
-          title: Interest
+        message:
+          title: Message
           type: string
           required: true
           description: |
-            "The common interest shared between the users"
+            "The generated message to be sent"
+        nameOne:
+          title: NameOne
+          type: string
+          required: true
+          description: |
+            "The name of the first user"
+        nameTwo:
+          title: NameTwo
+          type: string
+          required: true
+          description: |
+            "The name of the second user"
   function:
     - key: getBlogPosts
       handler: index.getBlogPosts
