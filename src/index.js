@@ -6,16 +6,18 @@ const slackToken = "xoxb-8428428571013-8431737529858-SYTpkn39ANECl9dqiq7k05aq";
 const client = new WebClient(slackToken);
 
 export async function getBlogPosts(payload) {
-  const response = await api.asUser().requestConfluence(route`/wiki/api/v2/blogposts`, {
+  const response = await api.asUser().requestConfluence(route`/wiki/rest/api/content?type=blogpost&expand=body.view`, {
     headers: {
       'Accept': 'application/json'
     }
   });
 
   console.log(`Response: ${response.status} ${response.statusText}`);
-  console.log(await response.json());
 
-  return response.json();
+  const data = await response.json();
+  console.log("Blog Posts:", data);
+
+  return data.results;
 }
 
 async function getId(name) {
@@ -36,8 +38,8 @@ async function getId(name) {
 }
 
 async function getUniqueChannelName(baseName) {
-  let name = baseName;
   let count = 0;
+  let name = `${baseName}-${count}`;
   let exists = true;
 
   const response = await client.conversations.list({types: "public_channel,private_channel"});
@@ -55,7 +57,7 @@ async function getUniqueChannelName(baseName) {
 async function matchmake(message, userA, userB) {
   try {
       const baseName = `${userA.toLowerCase().split(" ")[0]}-${userB.toLowerCase().split(" ")[0]}`;
-      const name = await getUniqueChannelName(baseName);
+      const name = baseName + await getUniqueChannelName(baseName);
       console.log(name);
 
       const conversation = await client.conversations.create({ name: name, is_private: true });
@@ -80,6 +82,7 @@ async function matchmake(message, userA, userB) {
   }
 }
 
-export function sendMessage(payload) {
-  matchmake(payload.Message, payload.NameOne, payload.NameTwo)
+export async function sendMessage(payload) {
+  console.log(payload)
+  await matchmake(payload.message, payload.nameOne, payload.nameTwo)
 }

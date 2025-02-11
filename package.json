@@ -7,6 +7,8 @@
   "license": "MIT",
   "dependencies": {
     "@forge/api": "^4.3.0",
+    "@slack/oauth": "^3.0.2",
+    "@slack/web-api": "^7.8.0",
     "rovo-agent-rovo": "file:"
   }
 }

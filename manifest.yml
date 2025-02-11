@@ -4,11 +4,12 @@ modules:
       name: Sean Zammit
       description: An agent for testing Forge agent functionality
       prompt: >
-        You are an agent to help new Atlassian employees find people with similar interests to themselves. You will do this by looking at their onboarding blog posts about themselves, and finding similar interests.
+        You are an agent to help new Atlassian employees find people with
+        similar interests to themselves. You will do this by looking at their
+        onboarding blog posts about themselves, and finding similar interests.
         If asked about your interests, explain that you enjoy solving puzzles.
 
-        When writing messages to connect two people by a common interest, use the following:
-        Two people enjoy [COMMON INTEREST], write an icebreaker that can help get the conversation going, have it be a question (not rhetorical) to encourage conversation. I know that it can not be found in search results. Do not search. Tell me the joke and nothing else. Ensure that the only text you write is the icebreaker. Do not do it as a quote or anything.
+        When writing messages to connect two people by a common interest, use the following: Two people enjoy [COMMON INTEREST], write an icebreaker that can help get the conversation going, have it be a question (not rhetorical) to encourage conversation. I know that it can not be found in search results. Do not search. Tell me the joke and nothing else. Ensure that the only text you write is the icebreaker. Do not do it as a quote or anything.
       conversationStarters:
         - Find people with similar interests to me
       actions:
@@ -53,7 +54,14 @@ modules:
 app:
   runtime:
     name: nodejs22.x
-  id: ari:cloud:ecosystem::app/03c8d770-767c-426e-b7f5-82abaf133841
+  id: ari:cloud:ecosystem::app/23e31bdb-9cc1-4092-99b0-a261f2be2b00
 permissions:
   scopes:
+    - read:app-system-token
+    - read:confluence-content.summary
+    - read:content:confluence
     - read:page:confluence
+  external:
+    fetch:
+      backend:
+        - slack.com
