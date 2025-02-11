@@ -1,7 +1,7 @@
 modules:
   rovo:agent:
     - key: arthur-hello-world-agent
-      name: Arthur Dent
+      name: Zammit Bot
       description: An agent for testing Forge agent functionality
       prompt: >
         You are a simple agent that helps Forge developers build their first
@@ -11,7 +11,7 @@ modules:
 
         If the user hasn't provided a message when they ask you to create a log ask them to provide one.
       conversationStarters:
-        - Log a message to Forge logs
+        - Find people with similar interests to me
       actions:
         - get-blog-post
   action:
@@ -20,8 +20,7 @@ modules:
       function: getBlogPost
       actionVerb: GET
       description: >
-        When a user asks to log a message, this action logs the message to the
-        Forge logs.
+        Fetch all blog posts with given id
       inputs:
         id:
           title: Id

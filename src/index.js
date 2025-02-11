@@ -9,4 +9,6 @@ export async function getBlogPosts(payload) {
 
   console.log(`Response: ${response.status} ${response.statusText}`);
   console.log(await response.json());
+
+  
 }
