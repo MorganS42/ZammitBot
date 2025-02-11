@@ -1,9 +1,14 @@
-export function messageLogger(payload) {
-  console.log(`Message: ${payload.message}`);
+import api, { route } from "@forge/api";
 
-  const message = `The user is on a Confluence ${payload.context?.confluence?.resourceType}`;
-  console.log(message);
-  return message;
+export async function getBlogPosts(payload) {
+  const response = await api.asUser().requestConfluence(route`/wiki/api/v2/labels/${payload.id}/blogposts`, {
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
+
+  console.log(`Response: ${response.status} ${response.statusText}`);
+  console.log(await response.json());
 }
 
 export function sendMessage(payload) {
